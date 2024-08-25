@@ -31,7 +31,7 @@ router
 	.patch(
 		validateToken,
 		validateBody(updateProductSchema),
-		productController.updateProduct
+		productController.updateProductById
 	)
 	.delete(validateToken, productController.deleteProduct);
 

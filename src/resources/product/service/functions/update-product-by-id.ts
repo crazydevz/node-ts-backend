@@ -4,7 +4,7 @@ import { validateObjectId } from '@utils/helpers/db-helper';
 import { UpdateProductPayload } from '../types/update-product-payload';
 import NotFound from '@utils/errors/not-found';
 
-export const updateProduct = async ({
+export const updateProductById = async ({
 	id,
 	body
 }: {
