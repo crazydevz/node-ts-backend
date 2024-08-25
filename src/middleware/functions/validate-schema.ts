@@ -1,10 +1,15 @@
 import constants from '@constants/index';
+import { NextFunction, Request, Response } from 'express';
+import Joi from 'joi';
 
-const validateSchema = (data: any, schema: any) => {
+const validateSchema = (
+	data: Record<string, any>,
+	schema: Joi.ObjectSchema<any>
+) => {
 	const result = schema.validate(data, { convert: false });
 	if (result.error) {
 		const errDetails = result.error.details.map(
-			(val: { message: any; path: any }) => ({
+			(val: { message: string; path: (string | number)[] }) => ({
 				error: val.message,
 				path: val.path
 			})
@@ -14,8 +19,8 @@ const validateSchema = (data: any, schema: any) => {
 	return null;
 };
 
-export const validateBody = (schema: any) => {
-	return (req: any, res: any, next: any) => {
+export const validateBody = (schema: Joi.ObjectSchema<any>) => {
+	return (req: Request, res: Response, next: NextFunction) => {
 		let response = { ...constants.defaultServiceResponse };
 		const err = validateSchema(req.body, schema);
 		if (err) {
@@ -27,8 +32,8 @@ export const validateBody = (schema: any) => {
 	};
 };
 
-export const validateQueryParams = (schema: any) => {
-	return (req: any, res: any, next: any) => {
+export const validateQueryParams = (schema: Joi.ObjectSchema<any>) => {
+	return (req: Request, res: Response, next: NextFunction) => {
 		let response = { ...constants.defaultServiceResponse };
 		const err = validateSchema(req.query, schema);
 		if (err) {
