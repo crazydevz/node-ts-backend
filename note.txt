@@ -1,2 +1,0 @@
-1. Fix issue with .js file imports (done)
-2. Create a src folder (done)
