@@ -6,11 +6,11 @@
 	"type": "commonjs",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"init-env-vars": "node --env-file=.env ./dist/server.js",
+		"init-env-vars": "node ./dist/server.js",
 		"build": "tsc",
 		"start-server": "npm run init-env-vars && node ./dist/server.js",
 		"dev": " tsc-watch --onSuccess \"npm run start-server\"",
-		"start": "npm run build && npm run start-server"
+		"start": "npm run start-server"
 	},
 	"author": "",
 	"license": "ISC",
