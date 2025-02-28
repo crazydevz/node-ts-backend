@@ -14,7 +14,7 @@ services:
     environment:
       NODE_ENV: production
       DB_URI: mongodb://root:example@mongodb:27017/test-db?authSource=admin
-      SECRET_KEY: mySecretKeY123@8i9dj
+      SECRET_KEY: ${SECRET_KEY}
     ports:
       - 3000:3000
     depends_on:
